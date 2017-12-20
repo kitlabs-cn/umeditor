@@ -206,7 +206,11 @@
                 }
 
                 $('<iframe name="up"  style="display: none"></iframe>').insertBefore(me.dialog).on('load', function(){
-                    var r = this.contentWindow.document.body.innerHTML;
+                	if(this.contentWindow.document.getElementsByTagName('pre').length){
+                		var r = this.contentWindow.document.getElementsByTagName('pre')[0].innerHTML;
+                	}else{
+                		var r = this.contentWindow.document.body.innerHTML
+                	}
                     if(r == '')return;
                     me.uploadComplete(r);
                     $(this).unbind('load');
